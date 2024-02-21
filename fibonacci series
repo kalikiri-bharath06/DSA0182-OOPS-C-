@@ -1,0 +1,46 @@
+#include <iostream>
+void generateFibonacci(int n) {
+    int term1 = 0, term2 = 1, nextTerm;
+
+    std::cout << "Fibonacci Series up to " << n << " terms: ";
+
+    for (int i = 1; i <= n; ++i) {
+        std::cout << term1 << " ";
+
+        nextTerm = term1 + term2;
+        term1 = term2;
+        term2 = nextTerm;
+    }
+
+    std::cout << std::endl;
+}
+int sumOfEvenFibonacci(int n) {
+    int term1 = 0, term2 = 1, nextTerm, sum = 0;
+
+    for (int i = 1; i <= n; ++i) {
+        if (term1 % 2 == 0) {
+            sum += term1;
+        }
+
+        nextTerm = term1 + term2;
+        term1 = term2;
+        term2 = nextTerm;
+    }
+
+    return sum;
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of terms for the Fibonacci series: ";
+    std::cin >> n;
+    if (std::cin.fail() || n < 1) {
+        std::cerr << "Invalid input. Please enter a positive integer." << std::endl;
+        return 1;
+    }
+    generateFibonacci(n);
+    int sumEven = sumOfEvenFibonacci(n);
+    std::cout << "Sum of even terms in the Fibonacci series: " << sumEven << std::endl;
+
+    return 0;
+}
