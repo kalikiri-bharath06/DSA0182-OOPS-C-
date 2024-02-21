@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cmath>
+int countDigits(int num) {
+    int count = 0;
+    while (num != 0) {
+        num /= 10;
+        ++count;
+    }
+    return count;
+}
+bool isArmstrong(int num) {
+    int originalNum = num;
+    int n = countDigits(num);
+    int sum = 0;
+
+    while (num != 0) {
+        int digit = num % 10;
+        sum += std::pow(digit, n);
+        num /= 10;
+    }
+
+    return (sum == originalNum);
+}
+void generateArmstrongNumbers(int n) {
+    int count = 0;
+    int number = 1;
+
+    std::cout << "Armstrong Numbers up to " << n << " terms: ";
+
+    while (count < n) {
+        if (isArmstrong(number)) {
+            std::cout << number << " ";
+            ++count;
+        }
+        ++number;
+    }
+
+    std::cout << std::endl;
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of Armstrong numbers to generate: ";
+    std::cin >> n;
+    if (std::cin.fail() || n < 1) {
+        std::cerr << "Invalid input. Please enter a positive integer." << std::endl;
+        return 1;
+    }
+    generateArmstrongNumbers(n);
+
+    return 0;
+}
