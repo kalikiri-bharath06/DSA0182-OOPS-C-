@@ -1,0 +1,21 @@
+#include <iostream>
+#include <sstream>
+std::string decimalToHexadecimal(int decimalNumber) {
+    std::stringstream ss;
+    ss << std::hex << decimalNumber;
+    return ss.str();
+}
+
+int main() {
+    int decimalNumber;
+    std::cout << "Enter a decimal number: ";
+    std::cin >> decimalNumber;
+    if (std::cin.fail()) {
+        std::cerr << "Invalid input. Please enter a valid decimal number." << std::endl;
+        return 1;
+    }
+    std::string hexadecimalNumber = decimalToHexadecimal(decimalNumber);
+    std::cout << "Hexadecimal equivalent: " << hexadecimalNumber << std::endl;
+
+    return 0;
+}
